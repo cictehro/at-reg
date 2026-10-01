@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Entry } from '../types';
 import { colors, radius, shadow, spacing } from '../theme';
 
@@ -9,6 +9,13 @@ type Props = {
 };
 
 export default function EntryItem({ entry, onDelete }: Props) {
+  const confirmDelete = () => {
+    Alert.alert('Delete entry', `Remove ${entry.name} from the register?`, [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Delete', style: 'destructive', onPress: () => onDelete(entry.id) },
+    ]);
+  };
+
   return (
     <View style={styles.card}>
       <Image source={{ uri: entry.photoUri }} style={styles.photo} />
@@ -21,7 +28,7 @@ export default function EntryItem({ entry, onDelete }: Props) {
         </Text>
       </View>
       <Pressable
-        onPress={() => onDelete(entry.id)}
+        onPress={confirmDelete}
         accessibilityRole="button"
         accessibilityLabel={`Delete ${entry.name}`}
         style={({ pressed }) => [styles.delete, pressed && styles.deletePressed]}
