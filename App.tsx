@@ -4,13 +4,13 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
 import SignUpForm from './components/SignUpForm';
 import EntryItem from './components/EntryItem';
 import { loadEntries, saveEntries } from './storage';
@@ -50,7 +50,7 @@ export default function App() {
   return (
     <SafeAreaProvider style={styles.screen}>
       <SafeAreaView style={styles.screen}>
-        <StatusBar style="dark" backgroundColor={colors.background} />
+        <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
         <KeyboardAvoidingView
           style={styles.flex}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
