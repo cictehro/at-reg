@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Attendance Register",
+    "slug": "attendance-register",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow access to your photos to choose a registration picture.",
+          "cameraPermission": "Allow camera access to take a registration picture."
+        }
+      ]
+    ]
+  }
+}
