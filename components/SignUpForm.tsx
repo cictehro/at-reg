@@ -21,6 +21,7 @@ export default function SignUpForm({ onSubmit }: Props) {
   const [admissionNumber, setAdmissionNumber] = useState('');
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
   const successOpacity = useRef(new Animated.Value(0)).current;
   const admissionRef = useRef<TextInput>(null);
 
@@ -38,12 +39,13 @@ export default function SignUpForm({ onSubmit }: Props) {
       : '';
 
   const showSuccess = () => {
+    setConfirmed(true);
     successOpacity.setValue(0);
     Animated.sequence([
       Animated.timing(successOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
       Animated.delay(1600),
       Animated.timing(successOpacity, { toValue: 0, duration: 500, useNativeDriver: true }),
-    ]).start();
+    ]).start(() => setConfirmed(false));
   };
 
   const submit = async () => {
@@ -79,7 +81,7 @@ export default function SignUpForm({ onSubmit }: Props) {
         ref={admissionRef}
         value={admissionNumber}
         onChangeText={setAdmissionNumber}
-        placeholder="e.g. CIT/00123/2023"
+        placeholder="CIT/00123/2023"
         placeholderTextColor={colors.placeholder}
         style={styles.input}
         autoCapitalize="characters"
@@ -87,7 +89,7 @@ export default function SignUpForm({ onSubmit }: Props) {
       />
 
       <View style={styles.message}>
-        {hint !== '' && <Text style={styles.hint}>{hint}</Text>}
+        {hint !== '' && !confirmed && <Text style={styles.hint}>{hint}</Text>}
         <Animated.Text style={[styles.success, { opacity: successOpacity }]}>
           Registered successfully
         </Animated.Text>
