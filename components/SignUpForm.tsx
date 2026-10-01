@@ -67,7 +67,7 @@ export default function SignUpForm({ onSubmit }: Props) {
         value={name}
         onChangeText={setName}
         placeholder="Jane Wanjiku"
-        placeholderTextColor={colors.textSecondary}
+        placeholderTextColor={colors.placeholder}
         style={styles.input}
         autoCapitalize="words"
         returnKeyType="next"
@@ -79,8 +79,8 @@ export default function SignUpForm({ onSubmit }: Props) {
         ref={admissionRef}
         value={admissionNumber}
         onChangeText={setAdmissionNumber}
-        placeholder="CIT/00123/2022"
-        placeholderTextColor={colors.textSecondary}
+        placeholder="e.g. CIT/00123/2023"
+        placeholderTextColor={colors.placeholder}
         style={styles.input}
         autoCapitalize="characters"
         returnKeyType="done"
